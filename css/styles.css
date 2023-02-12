@@ -10,8 +10,11 @@
   --col-cloud: #f4f4fd;
   --col-navy-blue-modal: rgba(46, 47, 66, 0.4);
   --col-grey: rgba(46, 47, 66, 0.7);
+  --col-black: #000000;
   --col-white: #ffffff;
   --col-background: #e5e5e5;
+  --col-bg-modal: #fcfcfc;
+  --col-bg-backdrop: rgba(0, 0, 0, 0.4);
   --col-btn-shadow: rgba(0, 0, 0, 0.15);
   --col-btn-shadow1: rgba(0, 0, 0, 0.12);
   --col-btn-shadow2: rgba(0, 0, 0, 0.08);
@@ -24,6 +27,7 @@
   --cont-padding-left: 15px;
   --cont-padding-right: 15px;
   --sect-flex-gap: 24px;
+  --trans-hv: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* margin 0 */
 h1,
@@ -122,6 +126,7 @@ img {
   line-height: calc(24 / 18);
   color: var(--col-navy-blue);
   text-decoration: none;
+  transition: color var(--trans-hv);
 }
 
 .current-page::after {
@@ -148,6 +153,7 @@ img {
   font-style: normal;
   text-decoration: none;
   color: var(--col-slate);
+  transition: color var(--trans-hv);
 }
 .address-a:focus,
 .address-a:hover {
@@ -197,6 +203,7 @@ img {
   display: block;
   margin-right: auto;
   margin-left: auto;
+  transition: background-color var(--trans-hv);
 }
 .index-hero-btn:focus,
 .index-hero-btn:hover {
@@ -328,6 +335,7 @@ img {
 }
 .index-section-team-cards-link {
   background-color: var(--col-iris);
+  transition: background-color var(--trans-hv);
 }
 .index-section-team-cards-link:focus,
 .index-section-team-cards-link:hover {
@@ -370,6 +378,7 @@ img {
   border: 1px solid var(--col-light-slate);
   color: var(--col-light-slate);
   border-radius: 4px;
+  transition: color var(--trans-hv), border var(--trans-hv);
 }
 .index-section-customers-link:focus,
 .index-section-customers-link:hover {
@@ -436,6 +445,7 @@ img {
 }
 .footer-social-links {
   background-color: var(--col-background-footer);
+  transition: background-color var(--trans-hv);
 }
 .footer-social-links:focus,
 .footer-social-links:hover {
@@ -444,6 +454,66 @@ img {
 .footer-social-icon {
   width: 24px;
   height: 24px;
+}
+/* modal */
+.backdrop {
+  background-color: var(--col-bg-backdrop);
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  transition: opacity 300ms ease, visibility 300ms ease;
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 408px;
+  min-height: 576px;
+  transform: scale(1);
+  transform: translate(-50%, -50%);
+
+  background-color: var(--col-bg-modal);
+  border-radius: 4px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+
+  transition: transform 300ms ease;
+}
+.modal.is-hidden {
+  transform: scale(0.1);
+  /* transform: translatex(50%); */
+}
+
+.modal-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background-color: var(--col-btn-shadow3);
+  color: var(--col-black);
+  transition: color var(--trans-hv), background-color var(--trans-hv);
+}
+.modal-btn:hover,
+.modal-btn:focus {
+  color: var(--col-white);
+  background-color: var(--col-ocean);
+}
+.modal-icon {
+  fill: currentColor;
 }
 /* portfolio */
 /* main */
@@ -467,6 +537,8 @@ img {
   border: 1px solid var(--col-cornflower);
   border-radius: 4px;
   padding: 12px 24px;
+  transition: color var(--trans-hv), background-color var(--trans-hv),
+    box-shadow var(--trans-hv);
 }
 .portfolio-hero-btn:focus,
 .portfolio-hero-btn:hover {
@@ -491,8 +563,34 @@ img {
 .portfolio-hero-a {
   text-decoration: none;
   display: block;
+
   box-shadow: 0 1px 6px var(--col-navy-blue-shadow1);
+  transition: box-shadow var(--trans-hv);
 }
+.portfolio-hero-a-first {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 300px;
+}
+.portfolio-hero-a-bg {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--col-iris);
+  color: var(--col-cloud);
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 40px;
+
+  transform: translatey(101%);
+  transition: transform var(--trans-hv);
+}
+
 .portfolio-hero-a:focus,
 .portfolio-hero-a:hover {
   box-shadow: 0 2px 1px var(--col-navy-blue-shadow1),
@@ -500,6 +598,9 @@ img {
     0 1px 6px var(--col-navy-blue-shadow1);
 }
 
+.portfolio-hero-a:hover .portfolio-hero-a-first .portfolio-hero-a-bg {
+  transform: translateY(0);
+}
 .portfolio-hero-img {
   width: 360px;
   height: 300px;
