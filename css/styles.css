@@ -92,7 +92,11 @@ img {
   padding-bottom: 28px;
 }
 .header-portfolio {
+  padding-bottom: 27px;
   border-bottom: 1px solid var(--col-cornflower);
+  box-shadow: 0px 2px 1px var(--col-navy-blue-shadow1),
+    0px 1px 1px var(--col-navy-blue-shadow2),
+    0px 1px 6px var(--col-navy-blue-shadow1);
 }
 
 /* logo */
@@ -465,7 +469,7 @@ img {
   top: 0;
   left: 0;
 
-  transition: opacity 300ms ease, visibility 300ms ease;
+  transition: opacity var(--trans-hv), visibility var(--trans-hv);
 }
 .backdrop.is-hidden {
   opacity: 0;
@@ -478,7 +482,7 @@ img {
   left: 50%;
   width: 408px;
   min-height: 576px;
-  transform: scale(1);
+
   transform: translate(-50%, -50%);
 
   background-color: var(--col-bg-modal);
@@ -486,10 +490,11 @@ img {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
 
-  transition: transform 300ms ease;
+  transition: transform var(--trans-hv);
 }
 .modal.is-hidden {
-  transform: scale(0.1);
+  transform: translatey(50%);
+
   /* transform: translatex(50%); */
 }
 
